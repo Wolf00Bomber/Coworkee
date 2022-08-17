@@ -20,8 +20,9 @@ jobs:
         distribution: 'corretto'
         cache: gradle   
 
-    - name: Use oxr463/setup-cordova
+
     - uses: oxr463/setup-cordova@0.0.3
+    - name: Use oxr463/setup-cordova
       with:
         exec: |
           cordova platform add android@9.0.0 && \

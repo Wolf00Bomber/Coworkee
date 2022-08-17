@@ -20,12 +20,10 @@ jobs:
         distribution: 'corretto'
         cache: gradle   
 
-
-    - uses: oxr463/setup-cordova@0.0.3
     - name: Use oxr463/setup-cordova
+      uses: oxr463/setup-cordova@0.0.3
       with:
         exec: |
-          cordova platform add android@9.0.0 && \
+          cordova platform add android && \
           cordova build --no-telemetry && \
-          cp "$(find . -name '*.apk')" .\
-          
+          cp "$(find . -name '*.apk')" .

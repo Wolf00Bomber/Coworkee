@@ -34,9 +34,6 @@ jobs:
       uses: oxr463/setup-cordova@0.0.3
       with:
         exec: |
-          ls -la && \
-          cd client && \
-          cd cordova && \
           cordova platform add android && \
           cordova build --no-telemetry && \
           cp "$(find . -name '*.apk')" .

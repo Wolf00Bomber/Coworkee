@@ -19,11 +19,23 @@ jobs:
         java-version: '8'
         distribution: 'corretto'
         cache: gradle   
+        
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v3.4.1
+      with:
+        # Version Spec of the version to use. Examples: 16, 12.x, 10.15.1, >=10.15.0.
+        node-version: 16
+        # Used to specify a package manager for caching in the default directory. Supported values: npm, yarn, pnpm.
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
 
-#     - name: Use oxr463/setup-cordova
-#       uses: oxr463/setup-cordova@0.0.3
-#       with:
-#         exec: |
-#           cordova platform add android && \
-#           cordova build --no-telemetry && \
-#           cp "$(find . -name '*.apk')" .
+    - name: Use oxr463/setup-cordova
+      uses: oxr463/setup-cordova@0.0.3
+      with:
+        exec: |
+          cd client && \
+          cd cordova && \
+          cordova platform add android && \
+          cordova build --no-telemetry && \
+          cp "$(find . -name '*.apk')" .
